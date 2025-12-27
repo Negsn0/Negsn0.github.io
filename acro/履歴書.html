@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang=\"ja\">
+<head>
+    <meta charset=\"UTF-8\">
+    <title>ユニークな履歴書</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #4a90e2, #9013fe);
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 10px;
+            border: 4px solid #fff;
+        }
+        section {
+            padding: 20px;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        h2 {
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li::before {
+            content: \"✔\";
+            color: #4a90e2;
+            padding-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>山田 太郎</h1>
+        <p>創造的な問題解決者 | フルスタック開発者 | テクノロジーエバンジェリスト</p>
+        <img src=\"your-photo-url.jpg\" alt=\"プロフィール写真\" class=\"profile-img\">
+    </header>
+
+    <div class=\"container\">
+        <section>
+            <h2>プロフィール</h2>
+            <p>革新的なアイデアを愛し、課題を楽しむ技術者。Web開発やデータサイエンスを通して、価値あるプロダクトの提供に情熱を注いでいます。</p>
+        </section>
+        
+        <section>
+            <h2>スキル</h2>
+            <ul>
+                <li>HTML/CSS/JavaScript</li>
+                <li>React/Vue.js</li>
+                <li>Python/Julia/Fortran</li>
+                <li>Git & GitHub</li>
+                <li>Docker & Kubernetes</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>経験</h2>
+            <ul>
+                <li><strong>ABC株式会社 (2023-現在)</strong><br>フルスタック開発者</li>
+                <li><strong>XYZ大学 (2020-2023)</strong><br>研究補助（物理学シミュレーション）</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>教育</h2>
+            <ul>
+                <li>XYZ大学 大学院物理学専攻 修士課程修了 (2023)</li>
+                <li>XYZ大学 理学部物理学科 卒業 (2021)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>プロジェクト</h2>
+            <ul>
+                <li>ポモドーロRPGアプリ (Kotlin/Compose)</li>
+                <li>核物理シミュレーション（HFB法） (Julia/Fortran)</li>
+                <li>個人ポートフォリオサイト (GitHub Pages)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>連絡先</h2>
+            <p>Email: taro.yamada@example.com</p>
+            <p>GitHub: <a href=\"https://github.com/taroyamada\">github.com/taroyamada</a></p>
+            <p>LinkedIn: <a href=\"#\">linkedin.com/in/taroyamada</a></p>
+        </section>
+    </div>
+</body>
+</html>

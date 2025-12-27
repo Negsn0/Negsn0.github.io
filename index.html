@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>根岸 颯 - 履歴書</title>
-    <link
-      rel="stylesheet"
-      href="index.css"
-    />
+    <link rel="stylesheet" href="index.css" />
+    <!-- jsPDFライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   </head>
   <body>
+    <!-- PDF出力ボタン -->
+    <div class="pdf-button-container">
+      <button id="generatePDF" class="pdf-button">📄 A4 PDFを生成</button>
+    </div>
+
     <header>
       <div class="header-content">
         <div class="header-text">
@@ -24,11 +29,12 @@
             <span class="badge">Julia</span>
             <span class="badge">Fortran</span>
             <span class="badge">数値計算</span>
+            <span class="badge">物理シミュレーション</span>
           </div>
         </div>
         <div class="header-image">
           <img
-            src="your-photo-url.jpg"
+            src="1750904869829.jpg"
             alt="プロフィール写真"
             class="profile-img"
           />
@@ -37,141 +43,373 @@
     </header>
 
     <div class="container">
-      <section>
-        <h2>プロフィール</h2>
-        <p>
-          原子核物理学の研究を通じて、<strong>課題発見能力</strong>と<strong>観察力</strong>を磨いてきました。人と協力しながら新しいことに挑戦することが好きで、理想と現実のギャップを埋めるための努力にやりがいを感じています。
-        </p>
-        <p>
-          高校時代には体育祭の実行委員として、前年度の競技を変更し全体の進行を改善する新しい運営体制にチャレンジして成功。後輩への引き継ぎ資料も作成し、次年度の改善に貢献しました。現在の研究活動でも、数値計算のアルゴリズムエラーを発見して研究の行き詰まりを解決した経験があり、問題の根本原因を迅速に特定し解決に導くことを得意としています。
-        </p>
-      </section>
+      <!-- 左カラム -->
+      <div class="left-column">
+        <section>
+          <h2>プロフィール</h2>
+          <p>
+            原子核物理学の研究を通じて、<strong>課題発見能力</strong>と<strong>観察力</strong>を磨いてきました。人と協力しながら新しいことに挑戦することが好きで、理想と現実のギャップを埋めるための努力にやりがいを感じています。
+          </p>
+          <p>
+            高校時代には体育祭の実行委員として、前年度の競技を変更し全体の進行を改善する新しい運営体制にチャレンジして成功。後輩への引き継ぎ資料も作成し、次年度の改善に貢献しました。現在の研究活動でも、数値計算のアルゴリズムエラーを発見して研究の行き詰まりを解決した経験があり、問題の根本原因を迅速に特定し解決に導くことを得意としています。
+          </p>
+        </section>
 
-      <section>
-        <h2>研究内容</h2>
-        <ul>
-          <li>
-            <strong>専攻分野</strong><br />原子核物理学 -
-            数値計算による物理現象の解明
-          </li>
-          <li>
-            <strong>卒業研究</strong
-            ><br />有限温度における原子核の相転移現象の数値計算による確認<br />•
-            C言語・JuliaによるBCS状態の相転移追跡システム構築<br />•
-            AI技術を活用した並列化処理の実装により計算効率を大幅向上
-          </li>
-          <li>
-            <strong>修士研究（現在進行中）</strong
-            ><br />角運動量射影による原子核対称性の回復手法の開発<br />•
-            既存Fortranコードの拡張と最適化<br />•
-            Julia言語への移植プロジェクト進行中（研究効率化を目指す）
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>研究内容</h2>
+          <ul>
+            <li>
+              <strong>専攻分野</strong><br />原子核物理学 -
+              数値計算による物理現象の解明
+            </li>
+            <li>
+              <strong>卒業研究</strong
+              ><br />有限温度における原子核の相転移現象の数値計算による確認<br />•
+              C言語・JuliaによるBCS状態の相転移追跡システム構築<br />•
+              AI技術を活用した並列化処理の実装により計算効率を大幅向上
+            </li>
+            <li>
+              <strong>修士研究（現在進行中）</strong
+              ><br />角運動量射影による原子核対称性の回復手法の開発<br />•
+              既存Fortranコードの拡張と最適化<br />•
+              Julia言語への移植プロジェクト進行中（研究効率化を目指す）
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>職歴・アルバイト経験</h2>
-        <ul>
-          <li>
-            <strong>東京個別指導学院 (2021年～現在)</strong
-            ><br />塾講師・リーダー業務<br />•
-            生徒の学習意欲向上のための個別指導プログラム開発<br />•
-            2022年、2024年にリーダーとしてチーム運営を担当
-          </li>
-          <li>
-            <strong>安田学園 中学校・高等学校 (2021-2023年)</strong
-            ><br />学習チューター<br />•
-            生徒一人ひとりの学習スタイルに合わせた指導を実践
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>職歴・アルバイト経験</h2>
+          <ul>
+            <li>
+              <strong>東京個別指導学院 (2021年～現在)</strong
+              ><br />塾講師・リーダー業務<br />•
+              生徒の学習意欲向上のための個別指導プログラム開発<br />•
+              2022年、2024年にリーダーとしてチーム運営を担当
+            </li>
+            <li>
+              <strong>安田学園 中学校・高等学校 (2021-2023年)</strong
+              ><br />学習チューター<br />•
+              生徒一人ひとりの学習スタイルに合わせた指導を実践
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>学歴</h2>
-        <ul>
-          <li>
-            <strong>安田学園高等部 S特コース</strong> 卒業
-            (2018年4月～2021年3月)
-          </li>
-          <li>
-            <strong>千葉大学 理学部物理学科</strong> 卒業 (2021年4月～2025年3月)
-          </li>
-          <li>
-            <strong>千葉大学 融合理工学府 修士課程</strong> 在学中 (2025年4月～)
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>研究・開発プロジェクト</h2>
+          <ul>
+            <li>
+              <strong>原子核物理シミュレーション開発</strong
+              ><br />BCS理論・HFB法による高精度数値計算システムの構築<br />•
+              Julia/Fortran/C言語を組み合わせた効率的な計算環境を実現
+            </li>
+            <li>
+              <strong>AI活用科学計算最適化</strong
+              ><br />機械学習技術を活用した並列化処理の実装<br />•
+              計算効率を大幅に向上させ、研究の加速に貢献
+            </li>
+            <li>
+              <strong>レガシーコード現代化プロジェクト</strong
+              ><br />Fortran→Julia移植による研究開発環境の効率化<br />•
+              開発速度の向上と保守性の改善を実現
+            </li>
+          </ul>
+        </section>
+      </div>
 
-      <section>
-        <h2>研究・開発プロジェクト</h2>
-        <ul>
-          <li>
-            <strong>原子核物理シミュレーション開発</strong
-            ><br />BCS理論・HFB法による高精度数値計算システムの構築<br />•
-            Julia/Fortran/C言語を組み合わせた効率的な計算環境を実現
-          </li>
-          <li>
-            <strong>AI活用科学計算最適化</strong
-            ><br />機械学習技術を活用した並列化処理の実装<br />•
-            計算効率を大幅に向上させ、研究の加速に貢献
-          </li>
-          <li>
-            <strong>レガシーコード現代化プロジェクト</strong
-            ><br />Fortran→Julia移植による研究開発環境の効率化<br />•
-            開発速度の向上と保守性の改善を実現
-          </li>
-        </ul>
-      </section>
+      <!-- 右カラム -->
+      <div class="right-column">
+        <section>
+          <h2>学歴</h2>
+          <ul>
+            <li>
+              <strong>安田学園高等部 S特コース</strong> 卒業
+              (2018年4月～2021年3月)
+            </li>
+            <li>
+              <strong>千葉大学 理学部物理学科</strong> 卒業
+              (2021年4月～2025年3月)
+            </li>
+            <li>
+              <strong>千葉大学 融合理工学府 修士課程</strong> 在学中
+              (2025年4月～)
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>技術スキル</h2>
-        <ul>
-          <li>
-            <strong>プログラミング言語</strong><br />Python, Julia, Fortran,
-            C言語<br />• 科学計算に特化した高度なプログラミングスキル
-          </li>
-          <li>
-            <strong>開発ツール・環境</strong><br />Git & GitHub, VSCode,
-            Linux(Ubuntu)<br />• チーム開発とバージョン管理の実践経験
-          </li>
-          <li>
-            <strong>専門分野</strong><br />数値計算, 並列化処理,
-            物理シミュレーション<br />• 大規模科学計算の最適化と効率化
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>技術スキル</h2>
+          <ul>
+            <li>
+              <strong>プログラミング言語</strong><br />Python, Julia, Fortran,
+              C言語<br />• 科学計算に特化した高度なプログラミングスキル
+            </li>
+            <li>
+              <strong>開発ツール・環境</strong><br />Git & GitHub, VSCode,
+              Linux(Ubuntu)<br />• チーム開発とバージョン管理の実践経験
+            </li>
+            <li>
+              <strong>専門分野</strong><br />数値計算, 並列化処理,
+              物理シミュレーション<br />• 大規模科学計算の最適化と効率化
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>保持資格</h2>
-        <ul>
-          <li>
-            <strong>語学力</strong><br />TOEIC 760点 (2024年取得)<br />•
-            基本的な英語でのコミュニケーションが可能
-          </li>
-          <li>
-            <strong>IT関連</strong><br />
-            基本情報技術者試験合格(2024年取得)
-            <br />• IT関連の基礎情報の理解
-          </li>
-          <li>
-            <strong>その他</strong><br />普通自動車免許(2022年取得)<br />•
-            研究活動や学会参加での移動に対応可
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>保持資格</h2>
+          <ul>
+            <li>
+              <strong>語学力</strong><br />TOEIC 760点 (2024年取得)<br />•
+              基本的な英語でのコミュニケーションが可能
+            </li>
+            <li>
+              <strong>IT関連</strong><br />
+              基本情報技術者試験合格(2024年取得)
+              <br />• IT関連の基礎情報の理解
+            </li>
+            <li>
+              <strong>その他</strong><br />普通自動車免許(2022年取得)<br />•
+              研究活動や学会参加での移動に対応可
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>連絡先</h2>
-        <ul>
-          <li><strong>Email</strong><br />25wm2106@student.gs.chiba-u.jp</li>
-          <li>
-            <strong>GitHub</strong><br /><a href="https://github.com/Negsn0"
-              >Negsn0</a
-            >
-          </li>
-          <li><strong>電話番号</strong><br />080-6686-2237</li>
-        </ul>
-      </section>
+        <section>
+          <h2>連絡先</h2>
+          <ul>
+            <li><strong>Email</strong><br />25wm2106@student.gs.chiba-u.jp</li>
+            <li>
+              <strong>GitHub</strong><br /><a href="https://github.com/Negsn0"
+                >Negsn0</a
+              >
+            </li>
+            <li><strong>電話番号</strong><br />080-6686-2237</li>
+          </ul>
+        </section>
+      </div>
     </div>
+
+    <!-- PDF生成スクリプト -->
+    <script>
+      document
+        .getElementById("generatePDF")
+        .addEventListener("click", function () {
+          generatePDF();
+        });
+
+      function generatePDF() {
+        // ボタンを一時的に無効化
+        const button = document.getElementById("generatePDF");
+        const originalText = button.textContent;
+        button.textContent = "PDF生成中...";
+        button.disabled = true;
+
+        try {
+          // jsPDFの初期化
+          const { jsPDF } = window.jspdf;
+          if (!jsPDF) {
+            throw new Error("jsPDFライブラリが読み込まれていません");
+          }
+
+          const pdf = new jsPDF("p", "mm", "a4");
+
+          // A4サイズ設定
+          const pageWidth = 210;
+          const pageHeight = 297;
+          const margin = 15;
+
+          // 印刷用スタイルを一時的に適用
+          const originalStyle = document.body.style.cssText;
+          document.body.style.cssText = `
+            background: white !important;
+            color: black !important;
+            font-size: 10pt !important;
+            line-height: 1.3 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 210mm !important;
+            height: 297mm !important;
+          `;
+
+          // コンテンツを取得（PDFボタンを除外）
+          const content = document.body.cloneNode(true);
+          const pdfButton = content.querySelector(".pdf-button-container");
+          if (pdfButton) {
+            pdfButton.remove();
+          }
+
+          // 代替方法1: より安定したhtml2canvas設定
+          const canvasOptions = {
+            scale: 1.2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: "#ffffff",
+            width: pageWidth - margin * 2,
+            height: pageHeight - margin * 2,
+            scrollX: 0,
+            scrollY: 0,
+            logging: false,
+            removeContainer: true,
+            foreignObjectRendering: false,
+            imageTimeout: 15000,
+          };
+
+          // html2canvasでコンテンツをキャプチャ
+          html2canvas(content, canvasOptions)
+            .then((canvas) => {
+              try {
+                // キャンバスを画像に変換（JPEG形式で圧縮）
+                const imgData = canvas.toDataURL("image/jpeg", 0.9);
+
+                // 画像のアスペクト比を計算
+                const imgWidth = pageWidth - margin * 2;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                // 複数ページに分割してPDFに追加
+                let heightLeft = imgHeight;
+                let position = 0;
+                let page = 1;
+
+                // 最初のページを追加
+                pdf.addImage(
+                  imgData,
+                  "JPEG",
+                  margin,
+                  margin,
+                  imgWidth,
+                  imgHeight,
+                  "",
+                  "FAST"
+                );
+                heightLeft -= pageHeight - margin * 2;
+
+                // 残りのページを追加
+                while (heightLeft >= 0) {
+                  position = heightLeft - imgHeight;
+                  pdf.addPage();
+                  pdf.addImage(
+                    imgData,
+                    "JPEG",
+                    margin,
+                    position + margin,
+                    imgWidth,
+                    imgHeight,
+                    "",
+                    "FAST"
+                  );
+                  heightLeft -= pageHeight - margin * 2;
+                  page++;
+                }
+
+                // PDFをダウンロード
+                pdf.save("根岸颯_履歴書.pdf");
+
+                // 元のスタイルを復元
+                document.body.style.cssText = originalStyle;
+
+                // ボタンを復元
+                button.textContent = originalText;
+                button.disabled = false;
+
+                console.log("PDF生成完了");
+              } catch (error) {
+                console.error("PDF生成エラー:", error);
+
+                // 代替方法2: より簡単なPDF生成
+                try {
+                  generateSimplePDF(
+                    pdf,
+                    content,
+                    pageWidth,
+                    pageHeight,
+                    margin
+                  );
+                  document.body.style.cssText = originalStyle;
+                  button.textContent = originalText;
+                  button.disabled = false;
+                } catch (simpleError) {
+                  console.error("代替PDF生成も失敗:", simpleError);
+                  alert("PDF生成中にエラーが発生しました: " + error.message);
+                  document.body.style.cssText = originalStyle;
+                  button.textContent = originalText;
+                  button.disabled = false;
+                }
+              }
+            })
+            .catch((error) => {
+              console.error("キャンバス生成エラー:", error);
+
+              // 代替方法3: 印刷ダイアログを開く
+              try {
+                alert("PDF生成に失敗しました。印刷ダイアログを開きます。");
+                window.print();
+                document.body.style.cssText = originalStyle;
+                button.textContent = originalText;
+                button.disabled = false;
+              } catch (printError) {
+                alert(
+                  "キャンバス生成中にエラーが発生しました: " + error.message
+                );
+                document.body.style.cssText = originalStyle;
+                button.textContent = originalText;
+                button.disabled = false;
+              }
+            });
+        } catch (error) {
+          console.error("初期化エラー:", error);
+          alert("PDF生成の初期化中にエラーが発生しました: " + error.message);
+
+          // エラー時もボタンを復元
+          button.textContent = originalText;
+          button.disabled = false;
+        }
+      }
+
+      // 代替のPDF生成方法
+      function generateSimplePDF(pdf, content, pageWidth, pageHeight, margin) {
+        // より簡単な方法でPDFを生成
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = pageWidth - margin * 2;
+        canvas.height = pageHeight - margin * 2;
+
+        // 白い背景を描画
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // テキストを描画
+        ctx.fillStyle = "#000000";
+        ctx.font = "10pt Arial";
+
+        // 簡単なテキストベースのPDF生成
+        pdf.setFontSize(12);
+        pdf.text("根岸 颯 - 履歴書", margin, margin + 10);
+        pdf.setFontSize(10);
+        pdf.text(
+          "原子核物理学研究者 × 数値計算エンジニア",
+          margin,
+          margin + 20
+        );
+        pdf.text("千葉大学融合理工学府 修士課程在学中", margin, margin + 30);
+
+        pdf.save("根岸颯_履歴書_簡易版.pdf");
+      }
+
+      // ページ読み込み完了時の確認
+      window.addEventListener("load", function () {
+        if (typeof window.jspdf === "undefined") {
+          console.error("jsPDFライブラリが読み込まれていません");
+          const button = document.getElementById("generatePDF");
+          button.textContent = "ライブラリ読み込みエラー";
+          button.disabled = true;
+        }
+        if (typeof html2canvas === "undefined") {
+          console.error("html2canvasライブラリが読み込まれていません");
+          const button = document.getElementById("generatePDF");
+          button.textContent = "ライブラリ読み込みエラー";
+          button.disabled = true;
+        }
+      });
+    </script>
   </body>
 </html>

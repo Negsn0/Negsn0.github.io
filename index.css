@@ -15,14 +15,55 @@ body {
   min-height: 100vh;
 }
 
+/* PDF生成ボタン */
+.pdf-button-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.pdf-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pdf-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.pdf-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.pdf-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* ヘッダー */
 header {
   background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #2d3748 100%);
-  padding: 50px 30px;
+  padding: 40px 30px;
   color: #fff;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
+  margin-bottom: 30px;
 }
 
 header::before {
@@ -52,8 +93,8 @@ header::before {
 }
 
 header h1 {
-  font-size: 3.5em;
-  margin: 0 0 20px 0;
+  font-size: 3.2em;
+  margin: 0 0 15px 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   font-weight: 300;
   letter-spacing: 2px;
@@ -64,12 +105,12 @@ header h1 {
 }
 
 .title-section {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .main-title {
-  font-size: 1.4em;
-  margin: 0 0 8px 0;
+  font-size: 1.3em;
+  margin: 0 0 6px 0;
   font-weight: 500;
   opacity: 0.95;
   letter-spacing: 0.5px;
@@ -77,15 +118,15 @@ header h1 {
 }
 
 .subtitle {
-  font-size: 1.1em;
-  margin: 0 0 5px 0;
+  font-size: 1em;
+  margin: 0 0 4px 0;
   opacity: 0.9;
   font-weight: 300;
   color: #cbd5e0;
 }
 
 .tagline {
-  font-size: 1em;
+  font-size: 0.9em;
   margin: 0;
   opacity: 0.8;
   font-style: italic;
@@ -96,15 +137,15 @@ header h1 {
 .header-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 15px;
 }
 
 .badge {
   background: rgba(102, 126, 234, 0.3);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85em;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
   font-weight: 500;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(102, 126, 234, 0.5);
@@ -124,12 +165,12 @@ header h1 {
 
 /* プロフィール画像 */
 .profile-img {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid rgba(102, 126, 234, 0.4);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  border: 4px solid rgba(102, 126, 234, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
 }
@@ -137,10 +178,10 @@ header h1 {
 .profile-img::before {
   content: "";
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
   background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
   border-radius: 50%;
   z-index: -1;
@@ -149,42 +190,56 @@ header h1 {
 
 .profile-img:hover {
   transform: scale(1.05) rotate(2deg);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* コンテナ */
+/* メインコンテナ - 2カラムレイアウト */
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 25px;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
   max-width: 1400px;
-  margin: 30px auto;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* 左カラム */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* 右カラム */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 /* セクション */
 section {
   background: rgba(255, 255, 255, 0.98);
-  padding: 30px;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* 見出し */
 h2 {
   color: #2d3748;
-  font-size: 1.4em;
+  font-size: 1.3em;
   font-weight: 600;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
   border-bottom: 2px solid #667eea;
   position: relative;
 }
@@ -194,7 +249,7 @@ h2::after {
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 40px;
+  width: 35px;
   height: 2px;
   background: linear-gradient(90deg, #667eea, #764ba2);
   border-radius: 1px;
@@ -208,8 +263,8 @@ ul {
 }
 
 li {
-  margin-bottom: 18px;
-  padding: 18px;
+  margin-bottom: 15px;
+  padding: 15px;
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
   border-radius: 8px;
   border-left: 4px solid #667eea;
@@ -227,23 +282,23 @@ li::before {
   content: "✓";
   color: #667eea;
   font-weight: bold;
-  padding-right: 12px;
-  font-size: 1.1em;
+  padding-right: 10px;
+  font-size: 1em;
 }
 
 /* 強調テキスト */
 li strong {
   color: #2d3748;
-  font-size: 1.05em;
+  font-size: 1em;
   font-weight: 600;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 /* 段落 */
 p {
-  margin: 0 0 15px 0;
-  line-height: 1.7;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
   color: #4a5568;
 }
 
@@ -266,21 +321,34 @@ a:hover {
 
 /* 箇条書き */
 li br + • {
-  margin-left: 20px;
+  margin-left: 15px;
   color: #718096;
-  font-size: 0.95em;
+  font-size: 0.9em;
 }
 
 /* レスポンシブデザイン */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .container {
     grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 0 20px;
+  }
+
+  .left-column,
+  .right-column {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
     padding: 0 15px;
     gap: 20px;
   }
 
   header {
     padding: 30px 15px;
+    margin-bottom: 20px;
   }
 
   .header-content {
@@ -290,49 +358,48 @@ li br + • {
 
   .header-text {
     margin-right: 0;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 
   header h1 {
     font-size: 2.5em;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
 
   .main-title {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   .subtitle {
-    font-size: 1em;
+    font-size: 0.95em;
   }
 
   .tagline {
-    font-size: 0.9em;
+    font-size: 0.85em;
   }
 
   .header-badges {
     justify-content: center;
-    margin-top: 15px;
+    margin-top: 12px;
   }
 
   .badge {
-    font-size: 0.8em;
-    padding: 5px 10px;
+    font-size: 0.75em;
+    padding: 4px 8px;
   }
 
   section {
-    padding: 25px;
-    margin: 0;
+    padding: 20px;
   }
 
   li {
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 12px;
+    margin-bottom: 12px;
   }
 
   .profile-img {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -350,133 +417,243 @@ li br + • {
   }
 
   .main-title {
-    font-size: 1.1em;
+    font-size: 1em;
   }
 
   .subtitle {
-    font-size: 0.95em;
+    font-size: 0.9em;
   }
 
   .tagline {
-    font-size: 0.85em;
+    font-size: 0.8em;
   }
 
   .header-badges {
-    gap: 8px;
+    gap: 6px;
   }
 
   .badge {
-    font-size: 0.75em;
-    padding: 4px 8px;
+    font-size: 0.7em;
+    padding: 3px 6px;
   }
 
   section {
-    padding: 20px;
+    padding: 15px;
   }
 
   li {
-    padding: 12px;
+    padding: 10px;
   }
 
   .profile-img {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
   }
 }
 
-/* 印刷用スタイル */
+/* A4印刷用スタイル - 大幅改善 */
 @media print {
+  /* A4サイズ設定 */
+  @page {
+    size: A4;
+    margin: 15mm 10mm;
+  }
+
+  /* 基本設定 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
   body {
     background: white !important;
     color: black !important;
-    font-size: 12pt;
-    line-height: 1.4;
+    font-size: 10pt;
+    line-height: 1.3;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm;
+    height: 297mm;
   }
 
+  /* ヘッダー最適化 */
   header {
     background: #2d3748 !important;
     color: white !important;
     box-shadow: none !important;
-    padding: 30px 20px !important;
+    padding: 12px 8px !important;
+    margin-bottom: 8px !important;
     page-break-after: avoid;
+    height: auto !important;
+  }
+
+  header::before {
+    display: none !important;
   }
 
   .header-content {
     flex-direction: row !important;
+    max-width: none !important;
+    margin: 0 !important;
   }
 
   .header-text {
-    margin-right: 30px !important;
+    margin-right: 12px !important;
+    margin-bottom: 0 !important;
+    flex: 1;
   }
 
   header h1 {
-    font-size: 2.5em !important;
+    font-size: 16pt !important;
+    margin: 0 0 6px 0 !important;
     color: white !important;
     -webkit-text-fill-color: white !important;
     background: none !important;
+    text-shadow: none !important;
+    letter-spacing: 1px !important;
   }
 
-  .main-title,
-  .subtitle,
-  .tagline {
+  .main-title {
+    font-size: 10pt !important;
+    margin: 0 0 3px 0 !important;
     color: white !important;
+  }
+
+  .subtitle {
+    font-size: 8pt !important;
+    margin: 0 0 2px 0 !important;
+    color: #e2e8f0 !important;
+  }
+
+  .tagline {
+    font-size: 7pt !important;
+    margin: 0 !important;
+    color: #cbd5e0 !important;
+  }
+
+  .header-badges {
+    margin-top: 6px !important;
+    gap: 4px !important;
   }
 
   .badge {
     background: rgba(255, 255, 255, 0.2) !important;
     color: white !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    font-size: 6pt !important;
+    padding: 2px 4px !important;
+    border-radius: 8px !important;
+  }
+
+  .header-image {
+    flex-shrink: 0;
   }
 
   .profile-img {
-    width: 120px !important;
-    height: 120px !important;
-    border: 3px solid rgba(255, 255, 255, 0.3) !important;
+    width: 50px !important;
+    height: 50px !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
     box-shadow: none !important;
   }
 
-  .container {
-    grid-template-columns: 1fr !important;
-    gap: 15px !important;
-    margin: 20px auto !important;
-    padding: 0 !important;
+  .profile-img::before {
+    display: none !important;
   }
 
+  /* コンテナ最適化 - 印刷時は1カラム */
+  .container {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .left-column,
+  .right-column {
+    gap: 6px !important;
+  }
+
+  /* セクション最適化 */
   section {
     background: white !important;
     box-shadow: none !important;
     border: 1px solid #e2e8f7 !important;
-    padding: 20px !important;
-    margin: 0 0 15px 0 !important;
+    padding: 10px !important;
+    margin: 0 0 6px 0 !important;
+    border-radius: 3px !important;
     page-break-inside: avoid;
+    border-radius: 6px;
   }
 
+  /* 見出し最適化 */
   h2 {
     color: #2d3748 !important;
-    border-bottom: 2px solid #667eea !important;
+    border-bottom: 1px solid #667eea !important;
+    font-size: 11pt !important;
+    margin-bottom: 6px !important;
+    padding-bottom: 3px !important;
     page-break-after: avoid;
+  }
+
+  h2::after {
+    display: none !important;
+  }
+
+  /* リスト最適化 */
+  ul {
+    margin: 0 !important;
   }
 
   li {
     background: white !important;
     border: 1px solid #e2e8f7 !important;
-    border-left: 4px solid #667eea !important;
-    padding: 12px !important;
-    margin-bottom: 10px !important;
+    border-left: 3px solid #667eea !important;
+    padding: 6px !important;
+    margin-bottom: 4px !important;
+    border-radius: 2px !important;
     page-break-inside: avoid;
+  }
+
+  li::before {
+    content: "•" !important;
+    color: #667eea !important;
+    font-weight: bold !important;
+    padding-right: 4px !important;
+    font-size: 1em !important;
   }
 
   li strong {
     color: #2d3748 !important;
+    font-size: 9pt !important;
+    margin-bottom: 2px !important;
   }
 
+  /* 段落最適化 */
   p {
     color: #4a5568 !important;
+    margin: 0 0 6px 0 !important;
+    line-height: 1.3 !important;
+    font-size: 8pt !important;
   }
 
+  p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* リンク最適化 */
   a {
     color: #667eea !important;
     text-decoration: underline !important;
+    font-weight: normal !important;
+  }
+
+  /* 箇条書き最適化 */
+  li br + • {
+    margin-left: 12px !important;
+    color: #718096 !important;
+    font-size: 7pt !important;
   }
 
   /* ページ区切りの制御 */
@@ -485,36 +662,59 @@ li br + • {
   }
 
   /* 不要な要素を非表示 */
-  .profile-img::before {
+  .profile-img::before,
+  header::before,
+  .pdf-button-container {
     display: none !important;
   }
 
-  /* フォントサイズの調整 */
+  /* 印刷時の余白調整 */
+  @page :first {
+    margin-top: 8mm;
+  }
+
+  @page :left {
+    margin-left: 10mm;
+    margin-right: 6mm;
+  }
+
+  @page :right {
+    margin-left: 6mm;
+    margin-right: 10mm;
+  }
+
+  /* フォントサイズの最終調整 */
   header h1 {
-    font-size: 2.2em !important;
+    font-size: 14pt !important;
   }
 
   .main-title {
-    font-size: 1.2em !important;
+    font-size: 9pt !important;
   }
 
   .subtitle {
-    font-size: 1em !important;
+    font-size: 7pt !important;
   }
 
   .tagline {
-    font-size: 0.9em !important;
+    font-size: 6pt !important;
   }
 
   h2 {
-    font-size: 1.3em !important;
+    font-size: 10pt !important;
   }
 
   li strong {
-    font-size: 1em !important;
+    font-size: 8pt !important;
   }
 
   p {
-    font-size: 11pt !important;
+    font-size: 7pt !important;
+  }
+
+  /* 印刷時の色調整 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 }
